@@ -3,6 +3,10 @@ import os
 import json
 import requests
 
+'''
+TODO add .gif condition 
+'''
+
 api_key = open("D:\\Python\\nasaeverday\\api_key.txt", "r").read() #windows
 #api_key = open("/home/ec2-user/api_key.txt").read() #linux
 
@@ -27,7 +31,7 @@ def download():
             os.remove("D://Python//nasaeverday//nasa_pic.jpg.REMOVE_ME")
         except:
             pass
-        
+
 def upload_photo():
     bot=Bot()
     bot.login(username='everyday_nasa',password=passw)
