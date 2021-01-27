@@ -3,6 +3,11 @@
 # Everyday NASA
 Instagram automation that takes images from NASA API every day and uploads them to instagram. None of these pictures are owned by me.. Everything is owned by NASA API.
 
+<div align="center">
+
+[![](https://img.shields.io/badge/Instagram-1a5dac?style=for-the-badge&link=https://www.instagram.com/everyday_nasa/)](https://www.instagram.com/everyday_nasa/)
+
+</div>
 
 
 # Installation
