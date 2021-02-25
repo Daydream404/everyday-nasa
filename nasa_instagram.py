@@ -2,6 +2,8 @@ from instabot import Bot
 import os
 import json
 import requests
+import time
+import random  
 
 '''
 TODO add .gif condition 
@@ -16,6 +18,8 @@ passw = open("D:\\Python\\nasaeverday\\passw.txt", "r").read()
 
 url = f"https://api.nasa.gov/planetary/apod?api_key={api_key}"
 filename = "nasa_pic.jpg"
+
+tags = ['#nasa','#space','#astro_photography','#astronauts','#planets','#deepsky','#astrography' ,'#telescope']
 
 def download():
     req = requests.get(url)
@@ -36,7 +40,20 @@ def upload_photo():
     bot=Bot()
     bot.login(username='everyday_nasa',password=passw)
     print("Logged in")
-    bot.upload_photo("D://Python//nasaeverday//nasa_pic.jpg", caption="#everydaynasa #nasa #space #planets #astro_photography #astronauts #deepsky #astrography #telescope")
+    
+    while True:
+        hashtags = random.choices(tags,k=3)
+        hashtags_final = ' '.join(hashtags)
+        #print(hashtags_final)
+        try:
+            bot.upload_photo("D://Python//nasaeverday//nasa_pic.jpg", caption=f"#everydaynasa {hashtags_final}")
+            #time.sleep(timeout)
+        
+        except Exception as e:
+            print(str(e))
+
+        time.sleep(60)
+
 
 
 if __name__ == '__main__':
