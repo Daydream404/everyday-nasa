@@ -25,7 +25,7 @@ tags = ['#nasa','#space','#astro_photography','#astronauts','#planets','#deepsky
 
 def download():
     req = requests.get(url)
-    picture_url= req.json()['url']
+    picture_url= req.json()['hdurl']
     if 'jpg' not in picture_url:
         print("No image??")
     else:
@@ -40,7 +40,7 @@ def download():
 
 def upload_photo():
     bot=Bot()
-    bot.login(username='everyday_nasa',password=passw)
+    bot.login(username=usern,password=passw)
     print("Logged in")
     while True:
         hashtags = random.choices(tags,k=3)
@@ -57,7 +57,6 @@ def upload_photo():
             print(str(e))
 
         time.sleep(60)
-
 
 
 if __name__ == '__main__':
