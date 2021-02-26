@@ -12,9 +12,6 @@ TODO add .gif condition
 api_key = open("D:\\Python\\nasaeverday\\api_key.txt", "r").read() #windows
 #api_key = open("/home/ec2-user/api_key.txt").read() #linux
 
-usern = open("D:\\Python\\nasaeverday\\usern.txt", "r").read()
-#passw = open("/home/ec2-user/usern.txt") #linux
-
 passw = open("D:\\Python\\nasaeverday\\passw.txt", "r").read()
 #passw = open("/home/ec2-user/passw.txt") #linux
 
@@ -25,7 +22,7 @@ tags = ['#nasa','#space','#astro_photography','#astronauts','#planets','#deepsky
 
 def download():
     req = requests.get(url)
-    picture_url= req.json()['hdurl']
+    picture_url= req.json()['url']
     if 'jpg' not in picture_url:
         print("No image??")
     else:
@@ -40,24 +37,25 @@ def download():
 
 def upload_photo():
     bot=Bot()
-    bot.login(username=usern,password=passw)
+    bot.login(username='everyday_nasa',password=passw)
     print("Logged in")
     while True:
+        req = requests.get(url)
+        desc = req.json()['explanation']
         hashtags = random.choices(tags,k=3)
         hashtags_final = ' '.join(hashtags)
-        #print(hashtags_final)
+        print(hashtags_final)
         timeout = random.randrange(86400, 144000)
-        #print(timeout)
+        print(timeout)
         try:
             download()
-            bot.upload_photo("D://Python//nasaeverday//nasa_pic.jpg", caption=f"#everydaynasa {hashtags_final}")
-            time.sleep(timeout)
+            bot.upload_photo("D://Python//nasaeverday//nasa_pic.jpg", caption=f"{desc} #everydaynasa {hashtags_final}")
+            time.sleep(10)
         
         except Exception as e:
             print(str(e))
-
+            
         time.sleep(60)
-
 
 if __name__ == '__main__':
     upload_photo()
