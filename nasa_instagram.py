@@ -58,4 +58,5 @@ def upload_photo():
         time.sleep(60)
 
 if __name__ == '__main__':
+    download()
     upload_photo()
